@@ -24,6 +24,7 @@ Temporary Items
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
+scraper/__pycache__/
 __pycache__/
 *.py[cod]
 
