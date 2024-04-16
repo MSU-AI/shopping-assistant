@@ -26,7 +26,8 @@ Temporary Items
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
+web_project/scraper/__pycache__
+web_project/__pycache__
 # C extensions
 *.so
 
