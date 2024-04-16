@@ -48,20 +48,44 @@ def add_product(request):
 
     search_term = request.GET.get('search_term', '')
 
-    #if search_term:
-       #output_csv_path = "C:\\Users\\anoos\\shopping-assistant-2\\web_project\\scraper\\output.csv"
+    """   if search_term:
+        output_csv_path = "C:\\Users\\anoos\\shopping-assistant-2\\web_project\\scraper\\output.csv"
 
 
-    #if os.path.exists(output_csv_path):
-        #os.remove(output_csv_path)
-
+    if os.path.exists(output_csv_path):
+       os.remove(output_csv_path)
+    """
 
     #api_call(search_term)
     results=get_product_data_csv("output.csv")
     #asins = [product[1] for product in results]
     #fetch_and_save_product_details.delay(asins)
-    # Now, iterate through the results and add them to the database
-    #for data in results:
-        #add_product_data_to_db(data)
+    #combined_product_data = fetch_all_product_data()
+    #another_function(combined_product_data)
+    
 
     return render(request, 'Results.html', {'products': results})
+
+
+from bson import json_util
+
+def fetch_all_product_data():
+    all_products = product.find()  # Fetch all documents in the 'scraper' collection
+
+    # Initialize an empty list to hold all product details
+    all_product_details = []
+
+    for prod in all_products:
+        print(f"Processing product: {prod.get('_id')}")
+        # Serialize each product and append it to the list
+        all_product_details.append(json.dumps(prod, default=json_util.default))
+
+    # Combine all product details into a single string separated by newlines
+    combined_product_details = ' '.join(all_product_details)
+
+    return combined_product_details
+
+
+
+def another_function(big_string):
+    print(big_string)  
